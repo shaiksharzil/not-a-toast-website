@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>not-a-toast - A Lightweight & Customizable Toast Notification Library</title>
+    
+    <!-- not-a-toast Library -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/not-a-toast@latest/dist/style.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <a href="#" class="logo">not-a-toast</a>
+            <nav class="desktop-nav">
+                <a href="#features">Features</a>
+                <a href="#demos">Demos</a>
+                <a href="https://github.com/shaiksharzil/not-a-toast" target="_blank">GitHub</a>
+                <a href="https://github.com/shaiksharzil/not-a-toast#readme" target="_blank">Docs</a>
+            </nav>
+            <button class="mobile-nav-toggle" aria-label="Open navigation menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </header>
+    
+    <!-- Mobile Nav -->
+    <div class="mobile-nav">
+        <a href="#features">Features</a>
+        <a href="#demos">Demos</a>
+        <a href="https://github.com/shaiksharzil/not-a-toast" target="_blank">GitHub</a>
+        <a href="https://github.com/shaiksharzil/not-a-toast#readme" target="_blank">Docs</a>
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="container hero-content">
+                <div class="hero-pretitle">Zero Dependencies. Pure JavaScript.</div>
+                <h1>not-a-toast</h1>
+                <p>A <span>beautiful, lightweight, & customizable</span> toast notification library designed for modern web apps.</p>
+                <div class="hero-buttons">
+                    <a href="#installation" class="btn btn-primary">Get Started</a>
+                    <button id="cook-toast-btn" class="btn btn-primary">Make me a toast</button>
+                    <a href="https://github.com/shaiksharzil/not-a-toast#readme" target="_blank" class="btn btn-secondary">Read Docs</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Installation Section -->
+        <section id="installation">
+            <div class="container">
+                <h2 class="section-title">Installation</h2>
+                <p class="section-subtitle">Add `not-a-toast` to your project using either npm or by including it directly from a CDN.</p>
+                <div class="installation-options">
+                    <div class="installation-card">
+                        <h3>Via npm</h3>
+                        <p>This is the recommended method for modern web applications.</p>
+                        <h4>Install the package:</h4>
+                        <div class="code-container">
+                            <button class="copy-btn">Copy</button>
+                            <pre><code>npm install not-a-toast</code></pre>
+                        </div>
+                        <h4>Import and use it in your project:</h4>
+                        <div class="code-container">
+                            <button class="copy-btn">Copy</button>
+<pre><code>// 1. Import the toast function and its stylesheet
+import toast from 'not-a-toast';
+import 'not-a-toast/style.css';
+
+// 2. Use it in your application
+toast({ message: 'Hello from npm! 👋' });</code></pre>
+                        </div>
+                    </div>
+                    <div class="installation-card">
+                        <h3>Via CDN</h3>
+                        <p>Use this method for quick demos or projects without a build step. This will make the `toast()` function globally available in your script.</p>
+                        <div class="code-container">
+                            <button class="copy-btn">Copy</button>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Not-a-Toast Demo&lt;/title&gt;
+  &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/not-a-toast@latest/dist/style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;button onclick="showMyToast()"&gt;Show Toast!&lt;/button&gt;
+
+  &lt;script src="https://cdn.jsdelivr.net/npm/not-a-toast@latest/dist/not-a-toast.umd.js"&gt;&lt;/script&gt;
+  &lt;script&gt;
+    function showMyToast() {
+      toast({ message: 'Hello from the CDN! 🚀' });
+    }
+  &lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Features Section -->
+        <section id="features">
+            <div class="container">
+                <h2 class="section-title">Why use not-a-toast?</h2>
+                <p class="section-subtitle">Packed with features to create engaging and informative notifications that seamlessly integrate with your UI.</p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="icon">🎨</div>
+                        <h3>40+ Built-in Themes</h3>
+                        <p>From glassmorphism to retro pixel, choose from a huge variety of themes or create your own.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🎬</div>
+                        <h3>20+ Entry & Exit Animations</h3>
+                        <p>Over 20 slick entry and exit animations to bring your notifications to life.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">⚙️</div>
+                        <h3>Fully Customizable</h3>
+                        <p>Control everything: duration, position, progress bars, buttons, icons, and custom styling.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🔄</div>
+                        <h3>Update Support</h3>
+                        <p>Dynamically update a toast's content, theme, and behavior after it has been displayed.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">💡</div>
+                        <h3>Promise (Async) Support</h3>
+                        <p>Easily handle async operations with built-in support for loading, success, and error states.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🧩</div>
+                        <h3>Custom HTML Content</h3>
+                        <p>For ultimate flexibility, use your own custom HTML structure within the toast body.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Demos Section -->
+        <section id="demos">
+            <div class="container">
+                <h2 class="section-title">Live Demos</h2>
+                <p class="section-subtitle">Interact with the options below to see `not-a-toast` in action. The code snippets update automatically!</p>
+
+                <!-- Basic Options Demo -->
+                <div class="demo-card">
+                    <h3>Basic Options</h3>
+                    <div class="demo-content">
+                        <div class="demo-controls" id="basic-controls">
+                           <div class="control-group">
+                                <label for="basic-duration">Duration (in ms)</label>
+                                <input type="number" id="basic-duration" value="4000" step="500">
+                           </div>
+                           <div class="control-group">
+                                <label><input type="checkbox" id="basic-autoclose" checked> Auto Close</label>
+                                <label><input type="checkbox" id="basic-pauseonhover" checked> Pause on Hover</label>
+                           </div>
+                           <div class="buttons-grid">
+                               <button class="btn btn-primary" id="basic-demo-btn">Show Basic Toast</button>
+                           </div>
+                        </div>
+                        <div class="code-container">
+                            <button class="copy-btn">Copy</button>
+                            <pre><code id="basic-code"></code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Multiline Toast Demo -->
+                <div class="demo-card">
+                    <h3>Multiline Toast</h3>
+                    <p class="demo-subtitle">Display messages across multiple lines using the `\n` character.</p>
+                    <div class="demo-content">
+                        <div class="demo-controls">
+                            <button class="btn btn-primary" id="multiline-demo-btn">Show Multiline Toast</button>
+                        </div>
+                        <div class="code-container">
+                            <button class="copy-btn">Copy</button>
+                            <pre><code id="multiline-code"></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Positioning Demo -->
+                <div class="demo-card">
+                    <h3>Positioning</h3>
+                     <p class="demo-subtitle">Display toasts in any of the six available screen positions.</p>
+                    <div class="demo-content">
+                        <div class="demo-controls" id="position-controls">
+                            <div class="buttons-grid" id="position-buttons">
+                                <button class="btn btn-secondary" data-position="top-left">Top Left</button>
+                                <button class="btn btn-secondary" data-position="top-center">Top Center</button>
+                                <button class="btn btn-secondary" data-position="top-right">Top Right</button>
+                                <button class="btn btn-secondary" data-position="bottom-left">Bottom Left</button>
+                                <button class="btn btn-secondary" data-position="bottom-center">Bottom Center</button>
+                                <button class="btn btn-secondary" data-position="bottom-right">Bottom Right</button>
+                            </div>
+                           <div class="control-group">
+                                <label>
+                                    <input type="checkbox" id="position-reverse-order"> Reverse toast order
+                                </label>
+                            </div>
+                        </div>
+                        <div class="code-container">
+                            <button class="copy-btn">Copy</button>
+                            <pre><code id="position-code"></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Themes Demo -->
+                <div class="demo-card">
+                    <h3>Themes</h3>
+                    <p class="demo-subtitle">Choose from over 40 built-in themes to match your application's style.</p>
+                    <div class="demo-content">
+                        <div class="demo-controls" id="theme-controls">
+                            <div class="control-group">
+                                <label for="theme-select">Select a theme</label>
+                                <select id="theme-select"></select>
+                            </div>
+                            <button class="btn btn-primary" id="theme-demo-btn">Show Toast</button>
+                        </div>
+                        <div class="code-container">
+                            <button class="copy-btn">Copy</button>
+                            <pre><code id="theme-code"></code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                 <!-- Custom Themes Demo -->
+                <div class="demo-card">
+                    <h3>Custom Themes</h3>
+                    <p class="demo-subtitle">Define your own theme with a simple CSS class.</p>
+                    <div class="demo-content">
+                        <div class="demo-controls">
+                           <p style="margin-top:0;">1. Define your styles in a CSS class (e.g., <code>.customTheme</code>).</p>
+                           <p>2. Pass the class name to the <code>theme</code> option.</p>
+                           <button class="btn btn-primary" id="custom-theme-demo-btn">Show Custom Theme Toast</button>
+                        </div>
+                        <div class="code-container">
+                            <button class="copy-btn">Copy</button>
+                            <pre><code id="custom-theme-code"></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Animations Demo -->
+                <div class="demo-card">
+                    <h3>Entry & Exit Animations</h3>
+                    <p class="demo-subtitle">Make your toasts pop with over 20 unique animations for entry and exit.</p>
+                    <div class="demo-content">
+                        <div class="demo-controls" id="animation-controls">
+                            <div class="control-group">
+                                <label for="entry-animation-select">Entry Animation</label>
+                                <select id="entry-animation-select"></select>
+                            </div>
+                            <div class="control-group">
+                                <label for="exit-animation-select">Exit Animation</label>
+                                <select id="exit-animation-select"></select>
+                            </div>
+                            <button class="btn btn-primary" id="animation-demo-btn">Show Toast</button>
+                        </div>
+                        <div class="code-container">
+                            <button class="copy-btn">Copy</button>
+                            <pre><code id="animation-code"></code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Styling Demo -->
+                <div class="demo-card">
+                    <h3>Direct Styling</h3>
+                     <p class="demo-subtitle">Override or apply styles directly to any toast for fine-grained control.</p>
+                    <div class="demo-content">
+                        <div class="demo-controls" id="styling-controls">
+                           <div class="control-row">
+                                <div class="control-group">
+                                    <label for="style-bg-color">Background</label>
+                                    <input type="color" id="style-bg-color" value="#1a1a1a">
+                                </div>
+                                <div class="control-group">
+                                    <label for="style-text-color">Text Color</label>
+                                    <input type="color" id="style-text-color" value="#ffffff">
+                                </div>
+                           </div>
+                            <div class="control-row">
+                                <div class="control-group">
+                                    <label for="style-border-radius">Border Radius</label>
+                                    <input type="text" id="style-border-radius" value="8px">
+                                </div>
+                                <div class="control-group">
+                                    <label for="style-font-size">Font Size</label>
+                                    <input type="text" id="style-font-size" value="1rem">
+                                </div>
+                            </div>
+                             <div class="control-row">
+                                <div class="control-group">
+                                    <label for="style-font-family">Font Family</label>
+                                    <input type="text" id="style-font-family" value="Inter, sans-serif">
+                                </div>
+                                <div class="control-group">
+                                    <label for="style-opacity">Opacity (0-1)</label>
+                                    <input type="number" id="style-opacity" value="1" step="0.1" min="0" max="1">
+                                </div>
+                            </div>
+                             <div class="control-group">
+                                <label for="style-border">Border</label>
+                                <input type="text" id="style-border" value="1px solid #ffffff">
+                            </div>
+                            <button class="btn btn-primary" id="styling-demo-btn">Show Toast</button>
+                        </div>
+                        <div class="code-container">
+                            <button class="copy-btn">Copy</button>
+                            <pre><code id="styling-code"></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Bar Demo -->
+                <div class="demo-card">
+                    <h3>Progress Bar</h3>
+                    <p class="demo-subtitle">Visually indicate the remaining duration of the toast.</p>
+                    <div class="demo-content">
+                        <div class="demo-controls" id="progress-bar-controls">
+                            <div class="control-group">
+                                <label>
+                                    <input type="checkbox" id="show-progress-bar" checked> Show Progress Bar
+                                </label>
+                            </div>
+                            <div class="control-group">
+                                <label for="progress-bar-color">Progress Bar Color</label>
+                                <input type="color" id="progress-bar-color" value="#ffffff">
+                            </div>
+                             <div class="control-group">
+                                <label for="progress-bar-height">Progress Bar Height (e.g., '4px')</label>
+                                <input type="text" id="progress-bar-height" value="4px">
+                            </div>
+                            <div class="control-group">
+                                <label for="progress-bar-position">Progress Bar Position</label>
+                                <select id="progress-bar-position">
+                                    <option value="bottom">Bottom</option>
+                                    <option value="top">Top</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-primary" id="progress-bar-demo-btn">Show Toast</button>
+                        </div>
+                        <div class="code-container">
+                            <button class="copy-btn">Copy</button>
+                            <pre><code id="progress-bar-code"></code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                 <!-- Close Button Demo -->
+                <div class="demo-card">
+                    <h3>Close Button</h3>
+                    <p class="demo-subtitle">Allow users to dismiss toasts manually.</p>
+                    <div class="demo-content">
+                        <div class="demo-controls" id="close-button-controls">
+                            <div class="control-group">
+                                <label><input type="checkbox" id="show-close-button" checked> Show Close Button</label>
+                            </div>
+                             <div class="control-group">
+                                <label for="close-button-color">Button Color</label>
+                                <input type="color" id="close-button-color" value="#666666">
+                            </div>
+                             <div class="control-group">
+                                <label for="close-button-size">Button Size (e.g., '1rem')</label>
+                                <input type="text" id="close-button-size" value="1rem">
+                            </div>
+                            <button class="btn btn-primary" id="close-button-demo-btn">Show Toast</button>
+                        </div>
+                        <div class="code-container">
+                            <button class="copy-btn">Copy</button>
+                            <pre><code id="close-button-code"></code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                 <!-- Action Button (Themes) Demo -->
+                <div class="demo-card">
+                    <h3>Action Button (Themes)</h3>
+                    <p class="demo-subtitle">Override the main toast's theme with a specific theme for the action button.</p>
+                    <div class="demo-content">
+                        <div class="demo-controls" id="action-theme-controls">
+                           <div class="control-group">
+                                <label for="action-toast-theme-select">Main Toast Theme</label>
+                                <select id="action-toast-theme-select"></select>
+                            </div>
+                            <div class="control-group">
+                                <label for="action-button-theme-select">Action Button Theme</label>
+                                <select id="action-button-theme-select"></select>
+                            </div>
+                           <div class="control-group">
+                                <label>
+                                    <input type="checkbox" id="action-theme-close-toast"> Close toast on action click
+                                </label>
+                            </div>
+                            <button class="btn btn-primary" id="action-theme-demo-btn">Show Action Toast</button>
+                        </div>
+                        <div class="code-container">
+                            <button class="copy-btn">Copy</button>
+                            <pre><code id="action-theme-code"></code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                 <!-- Styling Action Button Demo -->
+                <div class="demo-card">
+                    <h3>Styling Action Button</h3>
+                    <p class="demo-subtitle">Style the button independently with specific CSS properties.</p>
+                    <div class="demo-content">
+                        <div class="demo-controls" id="action-style-controls">
+                           <p style="font-size: 0.9rem; margin-top: 0; color: var(--muted-text-color);">Also available: `padding`, `margin`, `border`, `fontSize`, `fontFamily`, `opacity`, `shadow`.</p>
+                           <div class="control-row">
+                                <div class="control-group">
+                                    <label for="action-bg-color">Button Background</label>
+                                    <input type="color" id="action-bg-color" value="#ffffff">
+                                </div>
+                                <div class="control-group">
+                                    <label for="action-text-color">Button Text Color</label>
+                                    <input type="color" id="action-text-color" value="#1a1a1a">
+                                </div>
+                           </div>
+                           <div class="control-row">
+                               <div class="control-group">
+                                    <label for="action-border-radius">Button Border Radius</label>
+                                    <input type="text" id="action-border-radius" value="5px">
+                                </div>
+                               <div class="control-group">
+                                    <label for="action-border">Button Border</label>
+                                    <input type="text" id="action-border" value="1px solid #1a1a1a">
+                                </div>
+                           </div>
+                           <div class="control-group">
+                                <label>
+                                    <input type="checkbox" id="action-style-close-toast"> Close toast on action click
+                                </label>
+                            </div>
+                            <button class="btn btn-primary" id="action-style-demo-btn">Show Action Toast</button>
+                        </div>
+                        <div class="code-container">
+                            <button class="copy-btn">Copy</button>
+                            <pre><code id="action-style-code"></code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Icons Demo -->
+                <div class="demo-card">
+                    <h3>Icons</h3>
+                    <p class="demo-subtitle">Add visual cues with built-in icon types, emojis, or your own custom SVGs.</p>
+                    <div class="demo-content">
+                        <div class="demo-controls" id="icon-controls">
+                             <div class="buttons-grid" id="icon-buttons">
+                                 <button class="btn btn-secondary" data-icontype="success">Success</button>
+                                 <button class="btn btn-secondary" data-icontype="error">Error</button>
+                                 <button class="btn btn-secondary" data-icontype="info">Info</button>
+                                 <button class="btn btn-secondary" data-icontype="warn">Warning</button>
+                                 <button class="btn btn-secondary" data-icontype="loader">Loader</button>
+                                 <button class="btn btn-secondary" data-icontype="emoji">Emoji 🚀</button>
+                                 <button class="btn btn-secondary" data-icontype="svg">Custom SVG</button>
+                            </div>
+                             <div class="control-group">
+                                <label for="icon-animation-select">Icon Animation</label>
+                                <select id="icon-animation-select">
+                                    <option value="iconPulse">iconPulse</option>
+                                    <option value="iconBounce">iconBounce</option>
+                                    <option value="iconSpin">iconSpin</option>
+                                    <option value="iconWave">iconWave</option>
+                                    <option value="iconFloat">iconFloat</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <label for="icon-timing-function-select">Icon Timing Function</label>
+                                <select id="icon-timing-function-select">
+                                    <option value="ease">ease</option>
+                                    <option value="linear">linear</option>
+                                    <option value="ease-in">ease-in</option>
+                                    <option value="ease-out">ease-out</option>
+                                    <option value="ease-in-out">ease-in-out</option>
+                                    <option value="infinite">infinite</option>
+                                </select>
+                            </div>
+                            <div class="control-row">
+                                <div class="control-group">
+                                    <label for="icon-bg-color">Icon Background</label>
+                                    <input type="color" id="icon-bg-color" value="#ffffff">
+                                </div>
+                                <div class="control-group">
+                                    <label for="icon-color">Icon Color</label>
+                                    <input type="color" id="icon-color" value="#1a1a1a">
+                                </div>
+                            </div>
+                             <div class="control-group">
+                                <label for="icon-border-radius">Icon Border Radius</label>
+                                <input type="text" id="icon-border-radius" value="50%">
+                            </div>
+                        </div>
+                        <div class="code-container">
+                             <button class="copy-btn">Copy</button>
+                             <pre><code id="icon-code"></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Update Toast Demo -->
+                <div class="demo-card">
+                    <h3>Updating a Toast</h3>
+                     <p class="demo-subtitle">Dynamically update an existing toast after a delay, perfect for async operations.</p>
+                    <div class="demo-content">
+                        <div class="demo-controls">
+                            <button class="btn btn-primary" id="update-demo-btn">Run Update Demo</button>
+                        </div>
+                        <div class="code-container">
+                            <button class="copy-btn">Copy</button>
+                            <pre><code id="update-code"></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Promise Demo -->
+                <div class="demo-card">
+                    <h3>Promise (Async) Support</h3>
+                    <p class="demo-subtitle">Simulate an API call to see loading, success, and error states.</p>
+                    <div class="demo-content">
+                        <div class="demo-controls">
+                            <button class="btn btn-primary" id="promise-demo-btn">Run Promise Toast</button>
+                        </div>
+                        <div class="code-container">
+                             <button class="copy-btn">Copy</button>
+                            <pre><code id="promise-code"></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Reusable Styles Demo -->
+                <div class="demo-card">
+                    <h3>Reusable Styles</h3>
+                    <p class="demo-subtitle">Define a style object once and reuse it anywhere to maintain consistency.</p>
+                    <div class="demo-content">
+                        <div class="demo-controls">
+                            <div class="buttons-grid">
+                                <button class="btn btn-primary" id="reusable-style-btn1">Show Toast 1</button>
+                                <button class="btn btn-secondary" id="reusable-style-btn2">Show Toast 2</button>
+                           </div>
+                        </div>
+                        <div class="code-container">
+                            <button class="copy-btn">Copy</button>
+                            <pre><code id="reusable-style-code"></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Custom HTML Toast Demo -->
+                <div class="demo-card">
+                    <h3>Custom HTML Toast</h3>
+                    <p class="demo-subtitle">For ultimate flexibility, use your own HTML structure for the toast content.</p>
+                    <div class="demo-content">
+                        <div class="demo-controls">
+                            <button class="btn btn-primary" id="custom-toast-demo-btn">Show Custom Toast</button>
+                        </div>
+                        <div class="code-container">
+                            <button class="copy-btn">Copy</button>
+                            <pre><code id="custom-toast-code"></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        
+        <!-- Support Section -->
+        <section id="support">
+            <div class="container">
+                <h2 class="section-title">Support the Project</h2>
+                <p class="section-subtitle">If you find this library useful, please consider giving it a star on GitHub! Your support helps motivate me to maintain and improve it.</p>
+                <a href="https://github.com/shaiksharzil/not-a-toast" target="_blank" class="btn btn-github">
+                   ⭐ Star on GitHub
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 not-a-toast. Created with ❤️. A lightweight, customizable toast library.</p>
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/not-a-toast@latest/dist/not-a-toast.umd.js"></script>
+    <script src="/script.js"></script>
+</body>
+</html>
+
