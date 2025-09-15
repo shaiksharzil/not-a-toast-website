@@ -4,7 +4,6 @@
         box-sizing: border-box; 
       }
 
-
 :root {
             --bg-color: #ffffff;
             --card-bg-color: #ffffff;
@@ -244,15 +243,6 @@
             bottom: auto;
             transform: translateY(-50%) rotate(-45deg);
         }
-
-        @media (max-width: 768px) {
-    .mobile-nav-toggle {
-        display: block;
-    }
-    .desktop-nav {
-        display: none;
-    }
-}
 
 
         /* --- Hero Section --- */
@@ -518,11 +508,11 @@
         }
 
         .code-container {
-            width: 100%;
+            max-width: 100%;
             overflow-x: auto;
             white-space: nowrap;
             background-color: var(--code-bg-color);
-            padding: 30px;
+            padding: 10px;
             position: relative;
         }
 
@@ -537,11 +527,20 @@
             line-height: 1.5;
             color: var(--code-text-color);
         }
+
+        @media screen and (max-width: 599px) {
+      .installContainer{
+        max-width: 90%;
+      }
+      .footerP{
+        font-size: small;
+      }
+    }
         
         .copy-btn {
             position: absolute;
             top: 20px;
-            right: 30px;
+            right: 20px;
             background-color: #444;
             color: white;
             border: none;

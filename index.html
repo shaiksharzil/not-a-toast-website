@@ -6,7 +6,7 @@
     <title>not-a-toast - A Lightweight & Customizable Toast Notification Library</title>
     
     <!-- not-a-toast Library -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/not-a-toast@latest/dist/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/not-a-toast@1.0.4/dist/style.css">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -67,12 +67,12 @@
                         <h3>Via npm</h3>
                         <p>This is the recommended method for modern web applications.</p>
                         <h4>Install the package:</h4>
-                        <div class="code-container">
+                        <div class="code-container installContainer">
                             <button class="copy-btn">Copy</button>
                             <pre><code>npm install not-a-toast</code></pre>
                         </div>
                         <h4>Import and use it in your project:</h4>
-                        <div class="code-container">
+                        <div class="code-container installContainer">
                             <button class="copy-btn">Copy</button>
 <pre><code>// 1. Import the toast function and its stylesheet
 import toast from 'not-a-toast';
@@ -85,27 +85,26 @@ toast({ message: 'Hello from npm! 👋' });</code></pre>
                     <div class="installation-card">
                         <h3>Via CDN</h3>
                         <p>Use this method for quick demos or projects without a build step. This will make the `toast()` function globally available in your script.</p>
-                        <div class="code-container">
+                        <div class="code-container installContainer">
                             <button class="copy-btn">Copy</button>
-<pre><code>&lt;!DOCTYPE html&gt;
+<pre><code>
+    &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
   &lt;title&gt;Not-a-Toast Demo&lt;/title&gt;
   &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/not-a-toast@latest/dist/style.css"&gt;
 &lt;/head&gt;
 &lt;body&gt;
-
   &lt;button onclick="showMyToast()"&gt;Show Toast!&lt;/button&gt;
-
   &lt;script src="https://cdn.jsdelivr.net/npm/not-a-toast@latest/dist/not-a-toast.umd.js"&gt;&lt;/script&gt;
   &lt;script&gt;
     function showMyToast() {
       toast({ message: 'Hello from the CDN! 🚀' });
     }
   &lt;/script&gt;
-
 &lt;/body&gt;
-&lt;/html&gt;</code></pre>
+&lt;/html&gt;
+</code></pre>
                         </div>
                     </div>
                 </div>
@@ -346,7 +345,7 @@ toast({ message: 'Hello from npm! 👋' });</code></pre>
                             </div>
                             <div class="control-group">
                                 <label for="progress-bar-color">Progress Bar Color</label>
-                                <input type="color" id="progress-bar-color" value="#ffffff">
+                                <input type="color" id="progress-bar-color" value="#000000">
                             </div>
                              <div class="control-group">
                                 <label for="progress-bar-height">Progress Bar Height (e.g., '4px')</label>
@@ -397,7 +396,7 @@ toast({ message: 'Hello from npm! 👋' });</code></pre>
                  <!-- Action Button (Themes) Demo -->
                 <div class="demo-card">
                     <h3>Action Button (Themes)</h3>
-                    <p class="demo-subtitle">Override the main toast's theme with a specific theme for the action button.</p>
+                    <p class="demo-subtitle">By default, the action button adopts the toast's theme. You can override this by providing a specific theme name (one of the predefined themes) or a custom CSS class name(same as custom theme).</p>
                     <div class="demo-content">
                         <div class="demo-controls" id="action-theme-controls">
                            <div class="control-group">
@@ -428,7 +427,7 @@ toast({ message: 'Hello from npm! 👋' });</code></pre>
                     <p class="demo-subtitle">Style the button independently with specific CSS properties.</p>
                     <div class="demo-content">
                         <div class="demo-controls" id="action-style-controls">
-                           <p style="font-size: 0.9rem; margin-top: 0; color: var(--muted-text-color);">Also available: `padding`, `margin`, `border`, `fontSize`, `fontFamily`, `opacity`, `shadow`.</p>
+                           <p style="font-size: 0.9rem; margin-top: 0; color: var(--muted-text-color);">There are more action button styling options available. Please check out the docs.</p>
                            <div class="control-row">
                                 <div class="control-group">
                                     <label for="action-bg-color">Button Background</label>
@@ -572,9 +571,10 @@ toast({ message: 'Hello from npm! 👋' });</code></pre>
                 <!-- Custom HTML Toast Demo -->
                 <div class="demo-card">
                     <h3>Custom HTML Toast</h3>
-                    <p class="demo-subtitle">For ultimate flexibility, use your own HTML structure for the toast content.</p>
+                    <p class="demo-subtitle">For ultimate flexibility, you can provide your own HTML structure for the toast content. When using a custom toast, you still have access to duration, entryAnimation, exitAnimation, pauseOnHover, and position.</p>
                     <div class="demo-content">
                         <div class="demo-controls">
+                            <p style="font-size: 0.9rem; margin-top: 0; color: var(--muted-text-color);"><strong>Important:</strong> To enable closing your custom toast, ensure you include an element with the class close-btn within your custom HTML. Clicking this element will dismiss the toast.</p>
                             <button class="btn btn-primary" id="custom-toast-demo-btn">Show Custom Toast</button>
                         </div>
                         <div class="code-container">
@@ -602,11 +602,11 @@ toast({ message: 'Hello from npm! 👋' });</code></pre>
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2024 not-a-toast. Created with ❤️. A lightweight, customizable toast library.</p>
+            <p class="footerP">&copy; 2025 not-a-toast. Created with ❤️. By <a style="text-decoration: none; color:lightgreen;" href="https://shaik-sharzil.netlify.app/" target="_blank">shaik sharzil</a></p>
         </div>
     </footer>
     
-    <script src="https://cdn.jsdelivr.net/npm/not-a-toast@latest/dist/not-a-toast.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/not-a-toast@1.0.4/dist/not-a-toast.umd.js"></script>
     <script src="/script.js"></script>
 </body>
 </html>

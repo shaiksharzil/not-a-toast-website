@@ -107,13 +107,31 @@ document.addEventListener("DOMContentLoaded", () => {
     "cubeSpinOut",
   ];
 
-  // --- Cook me a toast button ---
+  const positions = [
+    "top-left",
+    "top-center",
+    "top-right",
+    "bottom-left",
+    "bottom-center",
+    "bottom-right",
+  ];
+
+  // --- Make me a toast button ---
   const cookToastBtn = document.getElementById("cook-toast-btn");
   cookToastBtn.addEventListener("click", () => {
     const randomTheme = themes[Math.floor(Math.random() * themes.length)];
+    const randomEntryAnimations =
+      entryAnimations[Math.floor(Math.random() * entryAnimations.length)];
+    const randomExitAnimations =
+      exitAnimations[Math.floor(Math.random() * exitAnimations.length)];
+    const randomPositions =
+      positions[Math.floor(Math.random() * positions.length)];
     toast({
       message: `Here's a '${randomTheme}' toast!`,
       theme: randomTheme,
+      entryAnimation: randomEntryAnimations,
+      exitAnimation: randomExitAnimations,
+      position: randomPositions,
     });
   });
 
@@ -193,8 +211,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const multilineBtn = document.getElementById("multiline-demo-btn");
   const multilineCodeEl = document.getElementById("multiline-code");
   const multilineOptions = {
-    message:
-      "This is a long toast message with additional details.\n\nYou can continue reading.",
+    message:"This is a long toast message with additional details.\nYou can continue reading.",
     duration: 6000,
   };
   updateCode(multilineCodeEl, buildCodeString(multilineOptions));
@@ -228,11 +245,12 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("#position-buttons button").forEach((button) => {
     button.addEventListener("click", () => {
       const position = button.dataset.position;
+       const randomTheme = themes[Math.floor(Math.random() * themes.length)];
       updatePositionCode(position);
       let options = {
         message: `Positioned at ${position}`,
         position: position,
-        theme: "carbon",
+        theme: randomTheme,
       };
       if (reverseOrderCheck.checked) {
         options.orderReversed = true;
@@ -461,14 +479,13 @@ toast({
       theme: actionToastThemeSelect.value,
       showActionButton: true,
       actionButtonLabel: "Read",
-      actionButtonTheme: "terminal",
+      actionButtonTheme: actionButtonThemeSelect.value,
       onAction: document.getElementById("action-theme-close-toast").checked
         ? (toastInstance) => toastInstance.close()
         : () => {
             toast({ message: "Action clicked!", theme: "sonoma" });
           },
     });
-    console.log(actionButtonThemeSelect.value);
   });
   updateActionThemeDemo();
 
