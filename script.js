@@ -116,6 +116,13 @@ document.addEventListener("DOMContentLoaded", () => {
     "bottom-right",
   ];
 
+  const progressBarAnimations = [
+    "rightToLeft",
+    "leftToRight",
+    "expand",
+    "shrink",
+  ];
+
   // --- Make me a toast button ---
   const cookToastBtn = document.getElementById("cook-toast-btn");
   cookToastBtn.addEventListener("click", () => {
@@ -126,12 +133,17 @@ document.addEventListener("DOMContentLoaded", () => {
       exitAnimations[Math.floor(Math.random() * exitAnimations.length)];
     const randomPositions =
       positions[Math.floor(Math.random() * positions.length)];
+    const randomProgressBarAnimations =
+      progressBarAnimations[
+        Math.floor(Math.random() * progressBarAnimations.length)
+      ];
     toast({
       message: `Here's a '${randomTheme}' toast!`,
       theme: randomTheme,
       entryAnimation: randomEntryAnimations,
       exitAnimation: randomExitAnimations,
       position: randomPositions,
+      progressBarAnimation: randomProgressBarAnimations,
     });
   });
 
@@ -390,6 +402,8 @@ toast({
       progressBarHeight: document.getElementById("progress-bar-height").value,
       progressBarPosition: document.getElementById("progress-bar-position")
         .value,
+      progressBarAnimation: document.getElementById("progress-bar-animation")
+        .value,
     };
     updateCode(progressBarCodeEl, buildCodeString(options));
   };
@@ -402,6 +416,8 @@ toast({
       progressBarColor: document.getElementById("progress-bar-color").value,
       progressBarHeight: document.getElementById("progress-bar-height").value,
       progressBarPosition: document.getElementById("progress-bar-position")
+        .value,
+      progressBarAnimation: document.getElementById("progress-bar-animation")
         .value,
     };
     toast(options);

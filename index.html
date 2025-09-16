@@ -6,7 +6,7 @@
     <title>not-a-toast - A Lightweight & Customizable Toast Notification Library</title>
     
     <!-- not-a-toast Library -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/not-a-toast@1.0.4/dist/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/not-a-toast@1.0.7/dist/style.css">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,7 +41,7 @@
         <a href="https://github.com/shaiksharzil/not-a-toast" target="_blank">GitHub</a>
         <a href="https://github.com/shaiksharzil/not-a-toast#readme" target="_blank">Docs</a>
     </div>
-
+    <div class="dummyHeader"></div>
     <main>
         <!-- Hero Section -->
         <section id="hero">
@@ -72,6 +72,7 @@
                             <pre><code>npm install not-a-toast</code></pre>
                         </div>
                         <h4>Import and use it in your project:</h4>
+                        <div class="installContainerCenter">
                         <div class="code-container installContainer">
                             <button class="copy-btn">Copy</button>
 <pre><code>// 1. Import the toast function and its stylesheet
@@ -80,6 +81,7 @@ import 'not-a-toast/style.css';
 
 // 2. Use it in your application
 toast({ message: 'Hello from npm! 👋' });</code></pre>
+                        </div>
                         </div>
                     </div>
                     <div class="installation-card">
@@ -92,11 +94,11 @@ toast({ message: 'Hello from npm! 👋' });</code></pre>
 &lt;html&gt;
 &lt;head&gt;
   &lt;title&gt;Not-a-Toast Demo&lt;/title&gt;
-  &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/not-a-toast@latest/dist/style.css"&gt;
+  &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/not-a-toast@1.0.7/dist/style.css"&gt;
 &lt;/head&gt;
 &lt;body&gt;
   &lt;button onclick="showMyToast()"&gt;Show Toast!&lt;/button&gt;
-  &lt;script src="https://cdn.jsdelivr.net/npm/not-a-toast@latest/dist/not-a-toast.umd.js"&gt;&lt;/script&gt;
+  &lt;script src="https://cdn.jsdelivr.net/npm/not-a-toast@1.0.7/dist/not-a-toast.umd.js"&gt;&lt;/script&gt;
   &lt;script&gt;
     function showMyToast() {
       toast({ message: 'Hello from the CDN! 🚀' });
@@ -358,6 +360,15 @@ toast({ message: 'Hello from npm! 👋' });</code></pre>
                                     <option value="top">Top</option>
                                 </select>
                             </div>
+                            <div class="control-group">
+                                <label for="progress-bar-animation">Progress Bar Animation</label>
+                                <select id="progress-bar-animation">
+                                    <option value="rightToLeft">rightToLeft</option>
+                                    <option value="leftToRight">leftToRight</option>
+                                    <option value="expand">expand</option>
+                                    <option value="shrink">shrink</option>
+                                </select>
+                            </div>
                             <button class="btn btn-primary" id="progress-bar-demo-btn">Show Toast</button>
                         </div>
                         <div class="code-container">
@@ -606,7 +617,7 @@ toast({ message: 'Hello from npm! 👋' });</code></pre>
         </div>
     </footer>
     
-    <script src="https://cdn.jsdelivr.net/npm/not-a-toast@1.0.4/dist/not-a-toast.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/not-a-toast@1.0.7/dist/not-a-toast.umd.js"></script>
     <script src="/script.js"></script>
 </body>
 </html>
