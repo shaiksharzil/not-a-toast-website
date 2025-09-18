@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://not-a-toast.vercel.app/sitemap.xml
