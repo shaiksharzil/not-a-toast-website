@@ -1,11 +1,3 @@
-window.dataLayer = window.dataLayer || [];
-function gtag() {
-  dataLayer.push(arguments);
-}
-gtag("js", new Date());
-
-gtag("config", "G-VT7FB5534Q");
-
 document.addEventListener("DOMContentLoaded", () => {
   // --- Theme Toggle ---
   const themeToggleBtn = document.getElementById("theme-toggle");
