@@ -1,4 +1,28 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // --- Theme Toggle ---
+  const themeToggleBtn = document.getElementById("theme-toggle");
+
+  const setTheme = (isDark) => {
+    if (isDark) {
+      document.body.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.body.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  };
+
+  const isDarkMode =
+    localStorage.getItem("theme") === "dark" ||
+    (!("theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches);
+
+  setTheme(isDarkMode);
+
+  themeToggleBtn.addEventListener("click", () => {
+    setTheme(!document.body.classList.contains("dark"));
+  });
+
   // --- Mobile Navigation ---
   const mobileNavToggle = document.querySelector(".mobile-nav-toggle");
   const mobileNav = document.querySelector(".mobile-nav");
@@ -223,7 +247,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const multilineBtn = document.getElementById("multiline-demo-btn");
   const multilineCodeEl = document.getElementById("multiline-code");
   const multilineOptions = {
-    message:"This is a long toast message with additional details.\nYou can continue reading.",
+    message:
+      "This is a long toast message with additional details.\nYou can continue reading.",
     duration: 6000,
   };
   updateCode(multilineCodeEl, buildCodeString(multilineOptions));
@@ -257,7 +282,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("#position-buttons button").forEach((button) => {
     button.addEventListener("click", () => {
       const position = button.dataset.position;
-       const randomTheme = themes[Math.floor(Math.random() * themes.length)];
+      const randomTheme = themes[Math.floor(Math.random() * themes.length)];
       updatePositionCode(position);
       let options = {
         message: `Positioned at ${position}`,
@@ -820,19 +845,29 @@ toast({
       const codeContainer = btn.parentElement;
       const codeElement = codeContainer.querySelector("code");
       if (codeElement) {
-        navigator.clipboard
-          .writeText(codeElement.textContent)
-          .then(() => {
+        const textToCopy = codeElement.textContent;
+        const tempTextArea = document.createElement("textarea");
+        tempTextArea.value = textToCopy;
+        document.body.appendChild(tempTextArea);
+        tempTextArea.select();
+        tempTextArea.setSelectionRange(0, 99999); // For mobile devices
+
+        try {
+          const successful = document.execCommand("copy");
+          if (successful) {
             btn.textContent = "Copied!";
             btn.classList.add("copied");
             setTimeout(() => {
               btn.textContent = "Copy";
               btn.classList.remove("copied");
             }, 2000);
-          })
-          .catch((err) => {
-            console.error("Failed to copy text: ", err);
-          });
+          } else {
+            toast({ message: "Failed to copy!", theme: "warningAlert" });
+          }
+        } catch (err) {
+          toast({ message: "Failed to copy!", theme: "warningAlert" });
+        }
+        document.body.removeChild(tempTextArea);
       }
     });
   });

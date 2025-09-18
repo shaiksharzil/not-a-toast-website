@@ -4,6 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>not-a-toast - A Lightweight & Customizable Toast Notification Library</title>
+    <!-- Primary Meta Tags -->
+<meta name="title" content="not-a-toast - Lightweight & Customizable Toast Notification Library">
+<meta name="description" content="not-a-toast is a modern, lightweight, zero-dependency JavaScript toast notification library with 40+ themes, 20+ animations, promise support, and full customization. Perfect for modern web apps.">
+
+<!-- Keywords (not as important but still useful) -->
+<meta name="keywords" content="toast notifications, javascript toast library, not-a-toast, notification library, toast js, lightweight toast, customizable toast, async toast, npm toast library, frontend toast notifications, react toast, react hot toast, react toast, react toastify, toastify, vite toast, toast, react notifications, react toast library, react notification library, javascript toastify, javascript toast library">
+
+<meta name="author" content="Shaik Sharzil">
+<meta name="robots" content="index, follow">
+<meta name="language" content="English">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://not-a-toast.vercel.app/">
+<meta property="og:title" content="not-a-toast - Lightweight & Customizable Toast Notification Library">
+<meta property="og:description" content="A beautiful, lightweight, customizable JavaScript toast notification library with themes, animations, and async support.">
+<meta property="og:image" content="https://not-a-toast.vercel.app/preview.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://not-a-toast.vercel.app/">
+<meta property="twitter:title" content="not-a-toast - Lightweight & Customizable Toast Notification Library">
+<meta property="twitter:description" content="A zero-dependency JS toast library with 40+ themes, animations, and async support. Perfect for modern apps.">
+<meta property="twitter:image" content="https://not-a-toast.vercel.app/preview.png">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://not-a-toast.vercel.app/" />
+<meta name="google-site-verification" content="bNw1Jd9RYwDX1ctoE_O0kcieHDCg-D7WDSZN8idrF7M" />
+
     
     <!-- not-a-toast Library -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/not-a-toast@1.0.7/dist/style.css">
@@ -20,17 +49,23 @@
     <header>
         <div class="container">
             <a href="#" class="logo">not-a-toast</a>
-            <nav class="desktop-nav">
-                <a href="#features">Features</a>
-                <a href="#demos">Demos</a>
-                <a href="https://github.com/shaiksharzil/not-a-toast" target="_blank">GitHub</a>
-                <a href="https://github.com/shaiksharzil/not-a-toast#readme" target="_blank">Docs</a>
-            </nav>
-            <button class="mobile-nav-toggle" aria-label="Open navigation menu">
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-            </button>
+            <div class="header-right">
+                <nav class="desktop-nav">
+                    <a href="#features">Features</a>
+                    <a href="#demos">Demos</a>
+                    <a href="https://github.com/shaiksharzil/not-a-toast" target="_blank">GitHub</a>
+                    <a href="https://github.com/shaiksharzil/not-a-toast#readme" target="_blank">Docs</a>
+                </nav>
+                <button id="theme-toggle" aria-label="Toggle theme">
+                    <svg id="theme-toggle-moon-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    <svg id="theme-toggle-sun-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                </button>
+                <button class="mobile-nav-toggle" aria-label="Open navigation menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
         </div>
     </header>
     
@@ -613,12 +648,31 @@ toast({ message: 'Hello from npm! 👋' });</code></pre>
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p class="footerP">&copy; 2025 not-a-toast. Created with ❤️. By <a style="text-decoration: none; color:lightgreen;" href="https://shaik-sharzil.netlify.app/" target="_blank">shaik sharzil</a></p>
+            <p class="footerP">&copy; 2025 not-a-toast. Created with ❤️. By <a style="text-decoration: none; color:#2a9d8f;" href="https://shaik-sharzil.netlify.app/" target="_blank">shaik sharzil</a></p>
         </div>
-    </footer>
-    
+    </footer>    
     <script src="https://cdn.jsdelivr.net/npm/not-a-toast@1.0.7/dist/not-a-toast.umd.js"></script>
-    <script src="/script.js"></script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "not-a-toast",
+  "operatingSystem": "Any",
+  "applicationCategory": "DeveloperTool",
+  "description": "A lightweight, customizable JavaScript toast notification library with themes, animations, and async support.",
+  "url": "https://not-a-toast.vercel.app/",
+  "author": {
+    "@type": "Person",
+    "name": "Shaik Sharzil"
+  },
+  "sameAs": [
+    "https://github.com/shaiksharzil/not-a-toast",
+    "https://www.npmjs.com/package/not-a-toast"
+  ]
+}
+</script>
+
+    <script src="/script.js"></script>  
 </body>
 </html>
 

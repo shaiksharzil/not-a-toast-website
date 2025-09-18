@@ -1,22 +1,61 @@
-    * {
+* {
         margin: 0;
         padding: 0;
         box-sizing: border-box; 
       }
 
 :root {
-            --bg-color: #ffffff;
-            --card-bg-color: #ffffff;
-            --text-color: #1a1a1a;
-            --muted-text-color: #666666;
-            --primary-color: #1a1a1a;
-            --primary-hover-color: #4d4d4d;
-            --border-color: #f0f0f0;
-            --code-bg-color: #1a1a1a;
-            --code-text-color: #f1f1f1;
-            --shadow-color: rgba(0, 0, 0, 0.05);
-            --header-height: 70px;
-        }
+    --bg-color: #ffffff;
+    --card-bg-color: #ffffff;
+    --text-color: #1a1a1a;
+    --muted-text-color: #666666;
+    --primary-color: #1a1a1a;
+    --primary-hover-color: #4d4d4d;
+    --border-color: #f0f0f0;
+    --code-bg-color: #1a1a1a;
+    --code-text-color: #f1f1f1;
+    --shadow-color: rgba(0, 0, 0, 0.05);
+    --header-height: 70px;
+    --header-bg: rgba(255, 255, 255, 0.8);
+    --section-bg: #fafafa;
+    --input-bg: #f8f9fa;
+    --footer-bg: #ffffff;
+    --btn-secondary-border: #e0e0e0;
+    --btn-secondary-hover-bg: #f8f8f8;
+    --btn-secondary-hover-border: #d0d0d0;
+    --copy-btn-bg: #444;
+    --copy-btn-hover-bg: #555;
+    --icon-color: #ffffff;
+    --logo-color: #1a1a1a;
+    --btn-secondary-color: #1a1a1a;
+    --btn-secondary-hover-color: #1a1a1a;
+}
+
+body.dark {
+    --bg-color: #121212;
+    --card-bg-color: #1e1e1e;
+    --text-color: #e0e0e0;
+    --muted-text-color: #999999;
+    --primary-color: #e0e0e0;
+    --primary-hover-color: #ffffff;
+    --border-color: #2e2e2e;
+    --code-bg-color: #282c34;
+    --code-text-color: #abb2bf;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --header-bg: rgba(18, 18, 18, 0.8);
+    --section-bg: #1a1a1a;
+    --input-bg: #2e2e2e;
+    --footer-bg: #1e1e1e;
+    --btn-secondary-border: #444;
+    --btn-secondary-hover-bg: #333;
+    --btn-secondary-hover-border: #555;
+    --copy-btn-bg: #555;
+    --copy-btn-hover-bg: #666;
+    --icon-color: #121212;
+    --logo-color: #e0e0e0;
+    --btn-secondary-color: #e0e0e0;
+    --btn-secondary-hover-color: #e0e0e0;
+}
 
         html,body{
             max-width: 100%;
@@ -36,6 +75,7 @@
             overflow-x: hidden;
             line-height: 1.6;
             font-size: 16px;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         
         body.mobile-nav-open {
@@ -105,7 +145,7 @@
 
         .btn-primary {
             background-color: var(--primary-color);
-            color: white;
+            color: var(--bg-color);
         }
 
         .btn-primary:hover {
@@ -116,13 +156,14 @@
         
         .btn-secondary {
             background-color: transparent;
-            color: var(--text-color);
-            border: 1px solid #e0e0e0;
+            color: var(--btn-secondary-color);
+            border: 1px solid var(--btn-secondary-border);
         }
 
         .btn-secondary:hover {
-            background-color: #f8f8f8;
-            border-color: #d0d0d0;
+            background-color: var(--btn-secondary-hover-bg);
+            border-color: var(--btn-secondary-hover-border);
+            color: var(--btn-secondary-hover-color);
             transform: translateY(-2px);
         }
         
@@ -131,7 +172,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: var(--header-bg);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
             z-index: 1002;
@@ -149,12 +190,18 @@
             align-items: center;
             height: 100%;
         }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem; /* Spacing between nav items and buttons */
+        }
 
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
             text-decoration: none;
-            color: var(--text-color);
+            color: var(--logo-color);
         }
 
         .desktop-nav a {
@@ -166,7 +213,45 @@
         }
 
         .desktop-nav a:hover {
-            color: var(--primary-color);
+            color: var(--text-color);
+        }
+        
+        /* --- Theme Toggle --- */
+        #theme-toggle {
+            position: relative;
+            width: 28px;
+            height: 28px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+        #theme-toggle svg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        /* Light mode: show moon icon, hide sun */
+        #theme-toggle-sun-icon {
+            opacity: 0;
+            transform: translate(-50%, -50%) rotate(-90deg);
+        }
+        #theme-toggle-moon-icon {
+            opacity: 1;
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
+        /* Dark mode: show sun icon, hide moon */
+        body.dark #theme-toggle-sun-icon {
+            opacity: 1;
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
+        body.dark #theme-toggle-moon-icon {
+            opacity: 0;
+            transform: translate(-50%, -50%) rotate(90deg);
         }
         
         /* --- Mobile Nav --- */
@@ -260,7 +345,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 80vh;
+            min-height: 100vh;
             box-sizing: border-box;
         }
 
@@ -332,7 +417,7 @@
         
         /* --- Installation Section --- */
         #installation {
-            background-color: #fafafa;
+            background-color: var(--section-bg);
             border-top: 1px solid var(--border-color);
             border-bottom: 1px solid var(--border-color);
         }
@@ -394,7 +479,7 @@
             font-size: 2rem;
             margin-bottom: 15px;
             background: var(--primary-color);
-            color: white;
+            color: var(--icon-color);
             width: 50px;
             height: 50px;
             display: flex;
@@ -475,7 +560,8 @@
             border: 1px solid var(--border-color);
             font-family: 'Inter', sans-serif;
             font-size: 1rem;
-            background-color: #f8f9fa;
+            background-color: var(--input-bg);
+            color: var(--text-color);
             box-sizing: border-box;
             outline: none;
             transition: all 0.2s ease;
@@ -485,7 +571,7 @@
         .demo-controls input[type="text"]:focus,
         .demo-controls input[type="number"]:focus {
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 2px rgba(26, 26, 26, 0.1);
+            box-shadow: 0 0 0 2px rgba(224, 224, 224, 0.1);
         }
 
         .demo-controls input[type="color"] {
@@ -546,7 +632,7 @@
             position: absolute;
             top: 10px;
             right: 10px;
-            background-color: #444;
+            background-color: var(--copy-btn-bg);
             color: white;
             border: none;
             padding: 5px 8px;
@@ -557,7 +643,7 @@
         }
 
         .copy-btn:hover {
-            background-color: #555;
+            background-color: var(--copy-btn-hover-bg);
         }
         
         .copy-btn.copied {
@@ -566,7 +652,7 @@
         
         /* --- Support Section --- */
         #support {
-            background-color: #fafafa;
+            background-color: var(--section-bg);
             text-align: center;
         }
         #support .btn-github {
@@ -586,7 +672,7 @@
             text-align: center;
             padding: 40px 0;
             border-top: 1px solid var(--border-color);
-            background-color: #fff;
+            background-color: var(--footer-bg);
         }
 
         footer p {
