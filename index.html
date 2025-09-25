@@ -35,13 +35,14 @@
 
     
     <!-- not-a-toast Library -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/not-a-toast@1.0.7/dist/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/not-a-toast@1.1.5/dist/style.css">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+     
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-VT7FB5534Q"></script>
 <script>
@@ -133,16 +134,17 @@ toast({ message: 'Hello from npm! 👋' });</code></pre>
                         <p>Use this method for quick demos or projects without a build step. This will make the `toast()` function globally available in your script.</p>
                         <div class="code-container installContainer">
                             <button class="copy-btn">Copy</button>
-<pre><code>
-    &lt;!DOCTYPE html&gt;
+<pre><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
   &lt;title&gt;Not-a-Toast Demo&lt;/title&gt;
-  &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/not-a-toast@1.0.7/dist/style.css"&gt;
+  &lt;!-- Stylesheet CDN --&gt;
+  &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/not-a-toast@1.1.5/dist/style.css"&gt;
 &lt;/head&gt;
 &lt;body&gt;
   &lt;button onclick="showMyToast()"&gt;Show Toast!&lt;/button&gt;
-  &lt;script src="https://cdn.jsdelivr.net/npm/not-a-toast@1.0.7/dist/not-a-toast.umd.js"&gt;&lt;/script&gt;
+  &lt;!-- Script CDN --&gt;
+  &lt;script src="https://cdn.jsdelivr.net/npm/not-a-toast@1.1.5/dist/not-a-toast.umd.js"&gt;&lt;/script&gt;
   &lt;script&gt;
     function showMyToast() {
       toast({ message: 'Hello from the CDN! 🚀' });
@@ -170,8 +172,8 @@ toast({ message: 'Hello from npm! 👋' });</code></pre>
                     </div>
                     <div class="feature-card">
                         <div class="icon">🎬</div>
-                        <h3>20+ Entry & Exit Animations</h3>
-                        <p>Over 20 slick entry and exit animations to bring your notifications to life.</p>
+                        <h3>33 Entry & Exit Animations</h3>
+                        <p>Over 30 slick entry and exit animations to bring your notifications to life.</p>
                     </div>
                     <div class="feature-card">
                         <div class="icon">⚙️</div>
@@ -206,6 +208,7 @@ toast({ message: 'Hello from npm! 👋' });</code></pre>
                 <!-- Basic Options Demo -->
                 <div class="demo-card">
                     <h3>Basic Options</h3>
+                    <p class="demo-subtitle">autoClose and pauseOnHover are set to true by default, so you don’t need to specify autoClose: true or pauseOnHover: true in the options</p>
                     <div class="demo-content">
                         <div class="demo-controls" id="basic-controls">
                            <div class="control-group">
@@ -217,7 +220,7 @@ toast({ message: 'Hello from npm! 👋' });</code></pre>
                                 <label><input type="checkbox" id="basic-pauseonhover" checked> Pause on Hover</label>
                            </div>
                            <div class="buttons-grid">
-                               <button class="btn btn-primary" id="basic-demo-btn">Show Basic Toast</button>
+                              <button class="btn btn-primary" id="basic-demo-btn">Show Basic Toast</button>
                            </div>
                         </div>
                         <div class="code-container">
@@ -291,11 +294,11 @@ toast({ message: 'Hello from npm! 👋' });</code></pre>
                  <!-- Custom Themes Demo -->
                 <div class="demo-card">
                     <h3>Custom Themes</h3>
-                    <p class="demo-subtitle">Define your own theme with a simple CSS class.</p>
+                    <p class="demo-subtitle">Define your own theme with a simple CSS class. Remember to prefix the class name with `notAToast`.</p>
                     <div class="demo-content">
                         <div class="demo-controls">
-                           <p style="margin-top:0;">1. Define your styles in a CSS class (e.g., <code>.customTheme</code>).</p>
-                           <p>2. Pass the class name to the <code>theme</code> option.</p>
+                           <p style="margin-top:0;">1. Define your styles in a CSS class (e.g., <code>.notAToastcustomTheme</code>).</p>
+                           <p>2. Pass the class name to the <code>theme</code> option without the prefix.</p>
                            <button class="btn btn-primary" id="custom-theme-demo-btn">Show Custom Theme Toast</button>
                         </div>
                         <div class="code-container">
@@ -309,7 +312,7 @@ toast({ message: 'Hello from npm! 👋' });</code></pre>
                 <!-- Animations Demo -->
                 <div class="demo-card">
                     <h3>Entry & Exit Animations</h3>
-                    <p class="demo-subtitle">Make your toasts pop with over 20 unique animations for entry and exit.</p>
+                    <p class="demo-subtitle">Make your toasts pop with 33 unique animations for entry and exit.</p>
                     <div class="demo-content">
                         <div class="demo-controls" id="animation-controls">
                             <div class="control-group">
@@ -329,6 +332,23 @@ toast({ message: 'Hello from npm! 👋' });</code></pre>
                     </div>
                 </div>
                 
+                 <!-- Custom Entry & Exit Animations Demo -->
+                <div class="demo-card">
+                    <h3>Custom Entry & Exit Animations</h3>
+                    <p class="demo-subtitle">Define your own animations with CSS keyframes. Remember to prefix the animation name with <code>notAToast</code>.</p>
+                    <div class="demo-content">
+                        <div class="demo-controls">
+                            <p style="margin-top:0;">1. Define your animation in a CSS <code>@keyframes</code> rule (e.g., <code>@keyframes notAToastfoldIn</code>).</p>
+                            <p>2. Pass the animation name to the options without the prefix (e.g., <code>'foldIn'</code>).</p>
+                            <button class="btn btn-primary" id="custom-animation-demo-btn">Show Custom Animation Toast</button>
+                        </div>
+                        <div class="code-container">
+                            <button class="copy-btn">Copy</button>
+                            <pre><code id="custom-animation-code"></code></pre>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Styling Demo -->
                 <div class="demo-card">
                     <h3>Direct Styling</h3>
@@ -345,7 +365,7 @@ toast({ message: 'Hello from npm! 👋' });</code></pre>
                                     <input type="color" id="style-text-color" value="#ffffff">
                                 </div>
                            </div>
-                            <div class="control-row">
+                             <div class="control-row">
                                 <div class="control-group">
                                     <label for="style-border-radius">Border Radius</label>
                                     <input type="text" id="style-border-radius" value="8px">
@@ -406,12 +426,7 @@ toast({ message: 'Hello from npm! 👋' });</code></pre>
                             </div>
                             <div class="control-group">
                                 <label for="progress-bar-animation">Progress Bar Animation</label>
-                                <select id="progress-bar-animation">
-                                    <option value="rightToLeft">rightToLeft</option>
-                                    <option value="leftToRight">leftToRight</option>
-                                    <option value="expand">expand</option>
-                                    <option value="shrink">shrink</option>
-                                </select>
+                                <select id="progress-bar-animation"></select>
                             </div>
                             <button class="btn btn-primary" id="progress-bar-demo-btn">Show Toast</button>
                         </div>
@@ -422,6 +437,21 @@ toast({ message: 'Hello from npm! 👋' });</code></pre>
                     </div>
                 </div>
                 
+                 <!-- Custom Progress Bar Animation Demo -->
+                <div class="demo-card">
+                    <h3>Custom Progress Bar Animation</h3>
+                    <p class="demo-subtitle">Create unique progress bar effects with custom CSS keyframes. Remember to prefix the animation name with <code>notAToast</code>.</p>
+                    <div class="demo-content">
+                        <div class="demo-controls">
+                           <button class="btn btn-primary" id="custom-progress-bar-demo-btn">Show Custom Progress Bar</button>
+                        </div>
+                        <div class="code-container">
+                            <button class="copy-btn">Copy</button>
+                            <pre><code id="custom-progress-bar-code"></code></pre>
+                        </div>
+                    </div>
+                </div>
+
                  <!-- Close Button Demo -->
                 <div class="demo-card">
                     <h3>Close Button</h3>
@@ -494,14 +524,14 @@ toast({ message: 'Hello from npm! 👋' });</code></pre>
                                 </div>
                            </div>
                            <div class="control-row">
-                               <div class="control-group">
-                                    <label for="action-border-radius">Button Border Radius</label>
-                                    <input type="text" id="action-border-radius" value="5px">
-                                </div>
-                               <div class="control-group">
-                                    <label for="action-border">Button Border</label>
-                                    <input type="text" id="action-border" value="1px solid #1a1a1a">
-                                </div>
+                              <div class="control-group">
+                                  <label for="action-border-radius">Button Border Radius</label>
+                                  <input type="text" id="action-border-radius" value="5px">
+                              </div>
+                              <div class="control-group">
+                                  <label for="action-border">Button Border</label>
+                                  <input type="text" id="action-border" value="1px solid #1a1a1a">
+                              </div>
                            </div>
                            <div class="control-group">
                                 <label>
@@ -517,6 +547,21 @@ toast({ message: 'Hello from npm! 👋' });</code></pre>
                     </div>
                 </div>
                 
+                 <!-- Custom Action Button Theme Demo -->
+                <div class="demo-card">
+                    <h3>Custom Action Button Theme</h3>
+                    <p class="demo-subtitle">Design a completely custom button by defining your own theme class. Remember to prefix the class name with <code>notAToast</code>.</p>
+                    <div class="demo-content">
+                        <div class="demo-controls">
+                             <button class="btn btn-primary" id="custom-action-button-demo-btn">Show Custom Button Theme</button>
+                        </div>
+                        <div class="code-container">
+                            <button class="copy-btn">Copy</button>
+                            <pre><code id="custom-action-button-code"></code></pre>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Icons Demo -->
                 <div class="demo-card">
                     <h3>Icons</h3>
@@ -529,18 +574,12 @@ toast({ message: 'Hello from npm! 👋' });</code></pre>
                                  <button class="btn btn-secondary" data-icontype="info">Info</button>
                                  <button class="btn btn-secondary" data-icontype="warn">Warning</button>
                                  <button class="btn btn-secondary" data-icontype="loader">Loader</button>
-                                 <button class="btn btn-secondary" data-icontype="emoji">Emoji 🚀</button>
+                                 <button class="btn btn-secondary" data-icontype="emoji">Emoji ❤️</button>
                                  <button class="btn btn-secondary" data-icontype="svg">Custom SVG</button>
-                            </div>
+                             </div>
                              <div class="control-group">
                                 <label for="icon-animation-select">Icon Animation</label>
-                                <select id="icon-animation-select">
-                                    <option value="iconPulse">iconPulse</option>
-                                    <option value="iconBounce">iconBounce</option>
-                                    <option value="iconSpin">iconSpin</option>
-                                    <option value="iconWave">iconWave</option>
-                                    <option value="iconFloat">iconFloat</option>
-                                </select>
+                                <select id="icon-animation-select"></select>
                             </div>
                             <div class="control-group">
                                 <label for="icon-timing-function-select">Icon Timing Function</label>
@@ -556,11 +595,11 @@ toast({ message: 'Hello from npm! 👋' });</code></pre>
                             <div class="control-row">
                                 <div class="control-group">
                                     <label for="icon-bg-color">Icon Background</label>
-                                    <input type="color" id="icon-bg-color" value="#ffffff">
+                                    <input type="color" id="icon-bg-color">
                                 </div>
                                 <div class="control-group">
                                     <label for="icon-color">Icon Color</label>
-                                    <input type="color" id="icon-color" value="#1a1a1a">
+                                    <input type="color" id="icon-color">
                                 </div>
                             </div>
                              <div class="control-group">
@@ -574,6 +613,21 @@ toast({ message: 'Hello from npm! 👋' });</code></pre>
                         </div>
                     </div>
                 </div>
+                
+                 <!-- Custom Icon Animation Demo -->
+                <div class="demo-card">
+                    <h3>Custom Icon Animation</h3>
+                    <p class="demo-subtitle">Bring icons to life with your own CSS keyframe animations. Remember to prefix the animation name with <code>notAToastIcon</code>.</p>
+                    <div class="demo-content">
+                        <div class="demo-controls">
+                             <button class="btn btn-primary" id="custom-icon-animation-demo-btn">Show Custom Icon Animation</button>
+                        </div>
+                        <div class="code-container">
+                            <button class="copy-btn">Copy</button>
+                            <pre><code id="custom-icon-animation-code"></code></pre>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Update Toast Demo -->
                 <div class="demo-card">
@@ -581,6 +635,7 @@ toast({ message: 'Hello from npm! 👋' });</code></pre>
                      <p class="demo-subtitle">Dynamically update an existing toast after a delay, perfect for async operations.</p>
                     <div class="demo-content">
                         <div class="demo-controls">
+                            <p style="font-size: 0.9rem; margin-top: 0; color: var(--muted-text-color);"><strong>Note:</strong> Set 'duration: 0' for the initial loading toast to prevent it from auto-closing.</p>
                             <button class="btn btn-primary" id="update-demo-btn">Run Update Demo</button>
                         </div>
                         <div class="code-container">
@@ -596,6 +651,7 @@ toast({ message: 'Hello from npm! 👋' });</code></pre>
                     <p class="demo-subtitle">Simulate an API call to see loading, success, and error states.</p>
                     <div class="demo-content">
                         <div class="demo-controls">
+                            <p style="font-size: 0.9rem; margin-top: 0; color: var(--muted-text-color);"><strong>Note:</strong> Set 'duration: 0' for the initial loading toast to prevent it from auto-closing.</p>
                             <button class="btn btn-primary" id="promise-demo-btn">Run Promise Toast</button>
                         </div>
                         <div class="code-container">
@@ -629,12 +685,30 @@ toast({ message: 'Hello from npm! 👋' });</code></pre>
                     <p class="demo-subtitle">For ultimate flexibility, you can provide your own HTML structure for the toast content. When using a custom toast, you still have access to duration, entryAnimation, exitAnimation, pauseOnHover, and position.</p>
                     <div class="demo-content">
                         <div class="demo-controls">
-                            <p style="font-size: 0.9rem; margin-top: 0; color: var(--muted-text-color);"><strong>Important:</strong> To enable closing your custom toast, ensure you include an element with the class close-btn within your custom HTML. Clicking this element will dismiss the toast.</p>
+                            <p style="font-size: 0.9rem; margin-top: 0; color: var(--muted-text-color);"><strong>Important:</strong> To enable closing your custom toast, ensure you include an element with the class `toastCloseButton` within your custom HTML. Clicking this element will dismiss the toast.</p>
                             <button class="btn btn-primary" id="custom-toast-demo-btn">Show Custom Toast</button>
                         </div>
                         <div class="code-container">
                             <button class="copy-btn">Copy</button>
                             <pre><code id="custom-toast-code"></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Remove All Toasts Demo -->
+                <div class="demo-card">
+                    <h3>Remove All Toasts</h3>
+                    <p class="demo-subtitle">Clear all visible toasts from the screen with a single function call.</p>
+                    <div class="demo-content">
+                        <div class="demo-controls">
+                             <div class="buttons-grid">
+                                <button class="btn btn-primary" id="remove-all-create-btn">Create 3 Toasts</button>
+                                <button class="btn btn-secondary" id="remove-all-clear-btn">Remove All</button>
+                           </div>
+                        </div>
+                        <div class="code-container">
+                            <button class="copy-btn">Copy</button>
+                            <pre><code id="remove-all-code"></code></pre>
                         </div>
                     </div>
                 </div>
@@ -648,7 +722,7 @@ toast({ message: 'Hello from npm! 👋' });</code></pre>
                 <h2 class="section-title">Support the Project</h2>
                 <p class="section-subtitle">If you find this library useful, please consider giving it a star on GitHub! Your support helps motivate me to maintain and improve it.</p>
                 <a href="https://github.com/shaiksharzil/not-a-toast" target="_blank" class="btn btn-github">
-                   ⭐ Star on GitHub
+                    ⭐ Star on GitHub
                 </a>
             </div>
         </section>
@@ -660,7 +734,7 @@ toast({ message: 'Hello from npm! 👋' });</code></pre>
             <p class="footerP">&copy; 2025 not-a-toast. Created with ❤️. By <a style="text-decoration: none; color:#2a9d8f;" href="https://shaik-sharzil.netlify.app/" target="_blank">shaik sharzil</a></p>
         </div>
     </footer>    
-    <script src="https://cdn.jsdelivr.net/npm/not-a-toast@1.0.7/dist/not-a-toast.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/not-a-toast@1.1.5/dist/not-a-toast.umd.js"></script>
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -680,8 +754,6 @@ toast({ message: 'Hello from npm! 👋' });</code></pre>
   ]
 }
 </script>
-
-    <script src="/script.js"></script>  
+<script src="/script.js"></script>
 </body>
 </html>
-

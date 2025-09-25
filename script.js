@@ -2,13 +2,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- Theme Toggle ---
   const themeToggleBtn = document.getElementById("theme-toggle");
 
+  let toastTheme = "";
   const setTheme = (isDark) => {
     if (isDark) {
       document.body.classList.add("dark");
       localStorage.setItem("theme", "dark");
+      toastTheme = "darkMatter";
     } else {
       document.body.classList.remove("dark");
       localStorage.setItem("theme", "light");
+      toastTheme = "default";
     }
   };
 
@@ -63,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "typewriterNote",
     "notebookSketch",
     "rainbow",
-    "Gradient",
+    "gradient",
     "cyberpunk",
     "web3",
     "warningAlert",
@@ -103,6 +106,16 @@ document.addEventListener("DOMContentLoaded", () => {
     "meteorDropIn",
     "portalIn",
     "cubeSpinIn",
+    "jellyPopIn",
+    "rippleIn",
+    "glitchIn",
+    "swingDownIn",
+    "glideIn",
+    "curtainIn",
+    "slinkyIn",
+    "sparkIn",
+    "dustIn",
+    "driftIn",
   ];
 
   const exitAnimations = [
@@ -129,6 +142,30 @@ document.addEventListener("DOMContentLoaded", () => {
     "meteorZoomOut",
     "portalOut",
     "cubeSpinOut",
+    "jellyPopOut",
+    "rippleOut",
+    "glitchOut",
+    "swingUpOut",
+    "glideOut",
+    "curtainOut",
+    "slinkyOut",
+    "sparkOut",
+    "dustOut",
+    "driftOut",
+  ];
+
+  const iconAnimations = [
+    "default",
+    "bounce",
+    "spin",
+    "pulse",
+    "wave",
+    "flipX",
+    "flipY",
+    "shakeX",
+    "shakeY",
+    "jelly",
+    "rubberBand",
   ];
 
   const positions = [
@@ -141,10 +178,12 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   const progressBarAnimations = [
-    "rightToLeft",
-    "leftToRight",
+    "shrinkRight",
+    "shrinkLeft",
+    "slideInRight",
+    "slideInLeft",
     "expand",
-    "shrink",
+    "collapse",
   ];
 
   // --- Make me a toast button ---
@@ -198,7 +237,12 @@ document.addEventListener("DOMContentLoaded", () => {
     for (const key in options) {
       const value = options[key];
 
-      if (value === undefined || value === null || value === "") continue;
+      if (
+        value === undefined ||
+        value === null ||
+        value === "" 
+      )
+        continue;
 
       if (typeof value === "string") {
         // Handle multiline messages for display
@@ -235,6 +279,7 @@ document.addEventListener("DOMContentLoaded", () => {
   basicBtn.addEventListener("click", () => {
     const options = {
       message: "This is a basic toast!",
+      theme: toastTheme,
       duration: parseInt(document.getElementById("basic-duration").value, 10),
       autoClose: document.getElementById("basic-autoclose").checked,
       pauseOnHover: document.getElementById("basic-pauseonhover").checked,
@@ -254,7 +299,7 @@ document.addEventListener("DOMContentLoaded", () => {
   updateCode(multilineCodeEl, buildCodeString(multilineOptions));
 
   multilineBtn.addEventListener("click", () => {
-    toast(multilineOptions);
+    toast({ ...multilineOptions, theme: toastTheme });
   });
 
   // --- Positions Demo ---
@@ -282,12 +327,11 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("#position-buttons button").forEach((button) => {
     button.addEventListener("click", () => {
       const position = button.dataset.position;
-      const randomTheme = themes[Math.floor(Math.random() * themes.length)];
       updatePositionCode(position);
       let options = {
         message: `Positioned at ${position}`,
         position: position,
-        theme: randomTheme,
+        theme: toastTheme,
       };
       if (reverseOrderCheck.checked) {
         options.orderReversed = true;
@@ -328,7 +372,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const customThemeBtn = document.getElementById("custom-theme-demo-btn");
   const customThemeCodeEl = document.getElementById("custom-theme-code");
   const customThemeCodeString = `/* In your CSS */
-.customTheme {
+/* Add the prefix 'notAToast' to your CSS class name */
+.notAToastcustomTheme {
     background: linear-gradient(to right, #4caf50, #8bc34a);
     color: white;
     border: 2px solid #388e3c;
@@ -338,7 +383,7 @@ document.addEventListener("DOMContentLoaded", () => {
 /* In your JS */
 toast({ 
     message: "This is a custom theme!",
-    theme: "customTheme" 
+    theme: "customTheme" // without 'notAToast' prefix
 });`;
   updateCode(customThemeCodeEl, customThemeCodeString);
   customThemeBtn.addEventListener("click", () => {
@@ -377,9 +422,44 @@ toast({
       message: "Check out these cool animations!",
       entryAnimation: entryAnimationSelect.value,
       exitAnimation: exitAnimationSelect.value,
+      theme: toastTheme,
     });
   });
   updateAnimationDemo();
+
+  // --- Custom Animation Demo ---
+  const customAnimationBtn = document.getElementById(
+    "custom-animation-demo-btn"
+  );
+  const customAnimationCodeEl = document.getElementById(
+    "custom-animation-code"
+  );
+  const customAnimationCodeString = `/* In your CSS */
+/* Add the prefix 'notAToast' to your animation names in CSS */
+@keyframes notAToastfoldIn {
+    0% { transform: scaleY(0) rotateX(-90deg); opacity: 0; transform-origin: top; }
+    100% { transform: scaleY(1) rotateX(0); opacity: 1; }
+}
+@keyframes notAToastfoldOut {
+    0% { transform: scaleY(1) rotateX(0); opacity: 1; }
+    100% { transform: scaleY(0) rotateX(90deg); opacity: 0; }
+}
+
+/* In your JS */
+toast({
+    message: 'This toast uses Fold animations',
+    entryAnimation: 'foldIn', // without 'notAToast' prefix
+    exitAnimation: 'foldOut' // without 'notAToast' prefix
+});`;
+  updateCode(customAnimationCodeEl, customAnimationCodeString);
+  customAnimationBtn.addEventListener("click", () => {
+    toast({
+      message: "This toast uses Fold animations",
+      entryAnimation: "foldIn",
+      exitAnimation: "foldOut",
+      theme: toastTheme,
+    });
+  });
 
   // --- Styling Demo ---
   const stylingControls = document.getElementById("styling-controls");
@@ -418,18 +498,32 @@ toast({
   const progressBarControls = document.getElementById("progress-bar-controls");
   const progressBarCodeEl = document.getElementById("progress-bar-code");
   const progressBarBtn = document.getElementById("progress-bar-demo-btn");
+  const progressBarAnimationSelect = document.getElementById(
+    "progress-bar-animation"
+  );
+
+  populateSelect(progressBarAnimationSelect, progressBarAnimations);
+  progressBarAnimationSelect.value = "shrinkRight";
 
   const updateProgressBarDemo = () => {
-    const options = {
-      message: "Toast with a progress bar!",
-      showProgressBar: document.getElementById("show-progress-bar").checked,
-      progressBarColor: document.getElementById("progress-bar-color").value,
-      progressBarHeight: document.getElementById("progress-bar-height").value,
-      progressBarPosition: document.getElementById("progress-bar-position")
-        .value,
-      progressBarAnimation: document.getElementById("progress-bar-animation")
-        .value,
-    };
+    let options = "";
+    if (document.getElementById("show-progress-bar").checked) {
+       options = {
+        message: "Toast with a progress bar!",
+        showProgressBar: document.getElementById("show-progress-bar").checked,
+        progressBarColor: document.getElementById("progress-bar-color").value,
+        progressBarHeight: document.getElementById("progress-bar-height").value,
+        progressBarPosition: document.getElementById("progress-bar-position")
+          .value,
+        progressBarAnimation: document.getElementById("progress-bar-animation")
+          .value,
+      };
+    } else {
+       options = {
+        message: "Toast with a progress bar!",
+        showProgressBar: false,
+      }
+    }
     updateCode(progressBarCodeEl, buildCodeString(options));
   };
 
@@ -448,6 +542,35 @@ toast({
     toast(options);
   });
   updateProgressBarDemo();
+
+  // --- Custom Progress Bar Animation ---
+  const customProgressBarBtn = document.getElementById(
+    "custom-progress-bar-demo-btn"
+  );
+  const customProgressBarCodeEl = document.getElementById(
+    "custom-progress-bar-code"
+  );
+  const customProgressBarCodeString = `/* In your CSS */
+/* Add the prefix 'notAToast' to your animation names in CSS */
+@keyframes notAToastslideProgress {
+    0% { width: 100%; background: limegreen; }
+    50% { width: 50%; background: orange; }
+    100% { width: 0%; background: red; }
+}
+
+/* In your JS */
+toast({
+    message: 'This toast has a custom progress bar',
+    progressBarAnimation: 'slideProgress' // without 'notAToast' prefix
+});`;
+  updateCode(customProgressBarCodeEl, customProgressBarCodeString);
+  customProgressBarBtn.addEventListener("click", () => {
+    toast({
+      message: "This toast has a custom progress bar",
+      progressBarAnimation: "slideProgress",
+      theme: toastTheme,
+    });
+  });
 
   // --- Close Button Demo ---
   const closeButtonControls = document.getElementById("close-button-controls");
@@ -493,16 +616,22 @@ toast({
   actionButtonThemeSelect.value = "default";
 
   const updateActionThemeDemo = () => {
-    const onActionFnString = document.getElementById("action-theme-close-toast")
-      .checked
-      ? "(toastInstance) => toastInstance.close()"
-      : '() => { toast({ message: "Action clicked!" }) }';
+    let actBtnLab = "";
+    let onActionFnString = "";
+
+    if (document.getElementById("action-theme-close-toast").checked) {
+      actBtnLab = "Close";
+      onActionFnString = "(x) => x.close()";
+    } else {
+      actBtnLab = "Read";
+      onActionFnString = '() => { toast({ message: "Action clicked!" }) }';
+    }
 
     let options = {
       message: "You have a new message!",
       theme: actionToastThemeSelect.value,
       showActionButton: true,
-      actionButtonLabel: "Read",
+      actionButtonLabel: actBtnLab,
       actionButtonTheme: actionButtonThemeSelect.value,
     };
     let codeString = `toast({\n`;
@@ -519,10 +648,13 @@ toast({
       message: "You have a new message!",
       theme: actionToastThemeSelect.value,
       showActionButton: true,
-      actionButtonLabel: "Read",
+      actionButtonLabel: document.getElementById("action-theme-close-toast")
+        .checked
+        ? "Close"
+        : "Read",
       actionButtonTheme: actionButtonThemeSelect.value,
       onAction: document.getElementById("action-theme-close-toast").checked
-        ? (toastInstance) => toastInstance.close()
+        ? (x) => x.close()
         : () => {
             toast({ message: "Action clicked!", theme: "sonoma" });
           },
@@ -538,7 +670,7 @@ toast({
   const updateActionStyleDemo = () => {
     const onActionFnString = document.getElementById("action-style-close-toast")
       .checked
-      ? "(toastInstance) => toastInstance.close()"
+      ? "(x) => x.close()"
       : '() => { toast({ message: "Action clicked!" }) }';
 
     let options = {
@@ -574,7 +706,7 @@ toast({
         .value,
       actionButtonBorder: document.getElementById("action-border").value,
       onAction: document.getElementById("action-style-close-toast").checked
-        ? (toastInstance) => toastInstance.close()
+        ? (x) => x.close()
         : () => {
             toast({ message: "Action clicked!", theme: "sonoma" });
           },
@@ -582,10 +714,72 @@ toast({
   });
   updateActionStyleDemo();
 
+  // --- Custom Action Button Theme ---
+  const customActionButtonBtn = document.getElementById(
+    "custom-action-button-demo-btn"
+  );
+  const customActionButtonCodeEl = document.getElementById(
+    "custom-action-button-code"
+  );
+  const customActionButtonCodeString = `/* In your CSS */
+/* Add the prefix notAToast to your CSS class name */
+.notAToastmyButtonTheme {
+    background: linear-gradient(135deg, #6366f1, #4338ca);
+    color: #fff;
+    border: none;
+    border-radius: 999px; /* pill-shaped */
+    /* ... other styles */
+}
+.notAToastmyButtonTheme:hover {
+    transform: translateY(-2px) scale(1.03);
+    /* ... other hover styles */
+}
+
+/* In your JS */
+toast({
+    message: "This toast has a custom action button theme",
+    showActionButton: true,
+    actionButtonLabel: "Close",
+    actionButtonTheme: "myButtonTheme", // without 'notAToast' prefix
+    onAction: (x) => x.close() 
+});`;
+  updateCode(customActionButtonCodeEl, customActionButtonCodeString);
+  customActionButtonBtn.addEventListener("click", () => {
+    toast({
+      message: "This toast has a custom action button theme",
+      showActionButton: true,
+      actionButtonLabel: "Close",
+      actionButtonTheme: "myButtonTheme", // without 'notAToast' prefix
+      onAction: (x) => x.close(),
+      theme: toastTheme,
+    });
+  });
+
   // --- Icon Demo ---
   const iconControls = document.getElementById("icon-controls");
   const iconCodeEl = document.getElementById("icon-code");
+  const iconAnimationSelect = document.getElementById("icon-animation-select");
+  populateSelect(iconAnimationSelect, iconAnimations);
+  iconAnimationSelect.value = "default";
+
   let lastIconOptions = {};
+  let iconBgColorChanged = false;
+  let iconColorChanged = false;
+
+  document.getElementById("icon-bg-color").addEventListener(
+    "input",
+    () => {
+      iconBgColorChanged = true;
+    },
+    { once: true }
+  );
+  document.getElementById("icon-color").addEventListener(
+    "input",
+    () => {
+      iconColorChanged = true;
+    },
+    { once: true }
+  );
 
   const updateIconCode = (options) => {
     lastIconOptions = options;
@@ -614,10 +808,15 @@ toast({
       iconAnimation: document.getElementById("icon-animation-select").value,
       iconTimingFunction: document.getElementById("icon-timing-function-select")
         .value,
-      iconBackground: document.getElementById("icon-bg-color").value,
-      iconColor: document.getElementById("icon-color").value,
       iconBorderRadius: document.getElementById("icon-border-radius").value,
     };
+    if (iconBgColorChanged) {
+      currentOpts.iconBackground =
+        document.getElementById("icon-bg-color").value;
+    }
+    if (iconColorChanged) {
+      currentOpts.iconColor = document.getElementById("icon-color").value;
+    }
     updateIconCode(currentOpts);
   });
 
@@ -631,10 +830,15 @@ toast({
         iconTimingFunction: document.getElementById(
           "icon-timing-function-select"
         ).value,
-        iconBackground: document.getElementById("icon-bg-color").value,
-        iconColor: document.getElementById("icon-color").value,
         iconBorderRadius: document.getElementById("icon-border-radius").value,
       };
+
+      if (iconBgColorChanged) {
+        options.iconBackground = document.getElementById("icon-bg-color").value;
+      }
+      if (iconColorChanged) {
+        options.iconColor = document.getElementById("icon-color").value;
+      }
 
       switch (type) {
         case "success":
@@ -645,7 +849,7 @@ toast({
           options.iconType = type;
           break;
         case "emoji":
-          options.icon = "🚀";
+          options.icon = "❤️";
           break;
         case "svg":
           options.icon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M14.448 16.2394C13.8809 17.0412 13.2933 17.7714 12.7015 18.4146C14.3738 20.0375 15.9291 20.7975 16.792 20.2993C17.6549 19.8011 17.7744 18.0742 17.2051 15.8145C16.3521 16.0054 15.426 16.1492 14.448 16.2394ZM13.138 16.3265C12.7641 16.342 12.3845 16.3499 12.0003 16.3499C11.6161 16.3499 11.2365 16.342 10.8627 16.3265C11.2394 16.8188 11.6208 17.2749 12.0003 17.6905C12.3798 17.2749 12.7612 16.8188 13.138 16.3265ZM18.1787 8.43278C20.8434 9.19718 22.5837 10.4672 22.5837 11.9999C22.5837 13.5325 20.8434 14.8026 18.1787 15.567C18.8491 18.2569 18.6193 20.399 17.292 21.1653C15.9647 21.9316 13.9947 21.0595 12.0003 19.134C10.006 21.0595 8.03596 21.9316 6.70866 21.1653C5.38136 20.399 5.15158 18.2569 5.82195 15.567C3.15724 14.8026 1.41699 13.5325 1.41699 11.9999C1.41699 10.4672 3.15724 9.19718 5.82195 8.43278C5.15158 5.74288 5.38136 3.60075 6.70866 2.83443C8.03596 2.06811 10.006 2.94019 12.0003 4.86569C13.9947 2.94019 15.9647 2.06811 17.292 2.83443C18.6193 3.60075 18.8491 5.74288 18.1787 8.43278ZM17.2051 8.18527C17.7744 5.92558 17.6549 4.19865 16.792 3.70046C15.9291 3.20226 14.3738 3.96221 12.7015 5.58509C13.2933 6.2283 13.8809 6.95849 14.448 7.76031C15.426 7.85054 16.3521 7.99432 17.2051 8.18527ZM6.79554 15.8145C6.22624 18.0742 6.34577 19.8011 7.20866 20.2993C8.07155 20.7975 9.62688 20.0375 11.2992 18.4146C10.7073 17.7714 10.1197 17.0412 9.55262 16.2394C8.57467 16.1492 7.6485 16.0054 6.79554 15.8145ZM10.8627 7.67324C11.2365 7.65776 11.6161 7.64987 12.0003 7.64987C12.3845 7.64987 12.7641 7.65776 13.138 7.67324C12.7612 7.18096 12.3798 6.7248 12.0003 6.30922C11.6208 6.7248 11.2394 7.18096 10.8627 7.67324ZM9.55262 7.76031C10.1197 6.95849 10.7073 6.2283 11.2992 5.58509C9.62688 3.96221 8.07155 3.20226 7.20866 3.70046C6.34577 4.19865 6.22624 5.92558 6.79554 8.18527C7.6485 7.99432 8.57467 7.85054 9.55262 7.76031ZM13.8939 15.2797C14.2395 14.7728 14.5772 14.2366 14.9015 13.6749C15.2258 13.1131 15.5213 12.5526 15.7875 11.9999C15.5213 11.4471 15.2258 10.8866 14.9015 10.3249C14.5772 9.76311 14.2395 9.22694 13.8939 8.72005C13.2821 8.6742 12.649 8.64987 12.0003 8.64987C11.3517 8.64987 10.7185 8.6742 10.1067 8.72005C9.76112 9.22694 9.42347 9.76311 9.09914 10.3249C8.77481 10.8866 8.4793 11.4471 8.21312 11.9999C8.4793 12.5526 8.77481 13.1131 9.09914 13.6749C9.42347 14.2366 9.76112 14.7728 10.1067 15.2797C10.7185 15.3255 11.3517 15.3499 12.0003 15.3499C12.649 15.3499 13.2821 15.3255 13.8939 15.2797ZM15.1785 15.1484C15.7932 15.0683 16.3789 14.9661 16.9286 14.8452C16.7584 14.3087 16.5541 13.7504 16.3161 13.178C16.1426 13.5095 15.9596 13.8421 15.7675 14.1749C15.5754 14.5076 15.3788 14.8324 15.1785 15.1484ZM8.82218 8.85133C8.20747 8.93147 7.62174 9.03367 7.07208 9.15454C7.24223 9.691 7.44659 10.2494 7.68454 10.8218C7.85806 10.4903 8.04101 10.1576 8.23311 9.82487C8.42522 9.49212 8.62185 9.16736 8.82218 8.85133ZM7.07208 14.8452C7.62174 14.9661 8.20747 15.0683 8.82218 15.1484C8.62185 14.8324 8.42522 14.5076 8.23311 14.1749C8.04101 13.8421 7.85806 13.5095 7.68454 13.178C7.44659 13.7504 7.24223 14.3087 7.07208 14.8452ZM6.09439 14.6C6.35551 13.7659 6.69407 12.8919 7.10491 11.9999C6.69407 11.1078 6.35551 10.2339 6.09439 9.39969C3.85279 10.0365 2.41699 11.0035 2.41699 11.9999C2.41699 12.9962 3.85279 13.9632 6.09439 14.6ZM16.9286 9.15454C16.3789 9.03367 15.7932 8.93147 15.1785 8.85133C15.3788 9.16736 15.5754 9.49212 15.7675 9.82487C15.9596 10.1576 16.1426 10.4903 16.3161 10.8218C16.5541 10.2494 16.7584 9.691 16.9286 9.15454ZM17.9063 9.39969C17.6451 10.2339 17.3066 11.1078 16.8957 11.9999C17.3066 12.8919 17.6451 13.7659 17.9063 14.6C20.1479 13.9632 21.5837 12.9962 21.5837 11.9999C21.5837 11.0035 20.1479 10.0365 17.9063 9.39969ZM12.0003 13.879C10.9625 13.879 10.1212 13.0377 10.1212 11.9999C10.1212 10.962 10.9625 10.1207 12.0003 10.1207C13.0382 10.1207 13.8795 10.962 13.8795 11.9999C13.8795 13.0377 13.0382 13.879 12.0003 13.879Z"></path></svg>`;
@@ -660,8 +864,41 @@ toast({
     message: "Icon Toast",
     showIcon: true,
     iconType: "success",
-    iconAnimation: "iconPulse",
-    iconTimingFunction: "infinite",
+  });
+
+  // --- Custom Icon Animation Demo ---
+  const customIconAnimationBtn = document.getElementById(
+    "custom-icon-animation-demo-btn"
+  );
+  const customIconAnimationCodeEl = document.getElementById(
+    "custom-icon-animation-code"
+  );
+  const customIconAnimationCodeString = `/* In your CSS */
+/* Add the prefix 'notAToastIcon' to your animation names in CSS */
+@keyframes notAToastIcontada {
+    0% { transform: scale(1); }
+    10%, 20% { transform: scale(0.7) rotate(-6deg); }
+    30%, 50%, 70%, 90% { transform: scale(1.3) rotate(6deg); }
+    40%, 60%, 80% { transform: scale(1.3) rotate(-6deg); }
+    100% { transform: scale(1) rotate(0); }
+}
+
+/* In your JS */
+toast({
+    message: "Tada icon animation",
+    showIcon: true,
+    icon: "🎉",
+    iconAnimation: "tada", // without 'notAToastIcon' prefix
+});`;
+  updateCode(customIconAnimationCodeEl, customIconAnimationCodeString);
+  customIconAnimationBtn.addEventListener("click", () => {
+    toast({
+      message: "Tada icon animation",
+      showIcon: true,
+      icon: "🎉",
+      iconAnimation: "tada",
+      theme: toastTheme,
+    });
   });
 
   // --- Update Demo ---
@@ -710,21 +947,22 @@ setTimeout(() => {
   const promiseCodeString = `async function testApiToast() {
     const t = toast({
         message: "Fetching post...",
+        theme: ""
         duration: 0,
         showIcon: true,
         iconType: "loader",
     });
-
     try {
-        await fetch("https://jsonplaceholder.typicode.com/posts/1");
+        const res = await fetch("https://picsum.photos/v2/list?page=2&limit=100");
+        const data = await res.json();
         t.update({
-            message: "Successfully fetched posts",
+            message: "successfully fetched posts",
             iconType: "success",
             duration: 4000,
         });
     } catch (err) {
         t.update({
-            message: "Error fetching posts",
+            message: "error occurs while fetching posts",
             iconType: "error",
             duration: 4000,
         });
@@ -741,7 +979,7 @@ testApiToast();`;
       duration: 0,
       showIcon: true,
       iconType: "loader",
-      theme: "skewed",
+      theme: toastTheme,
     });
 
     try {
@@ -815,7 +1053,7 @@ toast({
             <p class="title">Emma Johnson</p>
             <p class="message">You have a new message waiting.</p>
         </div>
-        <button class="close-btn">&times;</button>
+        <button class="toastCloseButton">&times;</button>
     </div> \`,
     duration: 5000
 });`;
@@ -825,23 +1063,72 @@ toast({
   customToastBtn.addEventListener("click", () => {
     toast({
       customToast: `
-                    <div style="display: flex; align-items: center; gap: 15px; background: white; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 16px; min-width: 300px; border: 1px solid #eee;">
-                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User" style="width: 50px; height: 50px; border-radius: 50%;">
-                        <div style="flex-grow: 1;">
-                            <p style="margin: 0; font-weight: 600; color: #212529;">Emma Johnson</p>
-                            <p style="margin: 0; color: #6c757d; font-size: 0.9rem;">You have a new message waiting.</p>
-                        </div>
-                        <button class="close-btn" style="background: none; border: none; font-size: 24px; color: #adb5bd; cursor: pointer; line-height: 1; padding: 0;">&times;</button>
-                    </div>
-                    `,
+                                <div style="display: flex; align-items: center; gap: 15px; background: white; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 16px; min-width: 300px; border: 1px solid #eee;">
+                                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User" style="width: 50px; height: 50px; border-radius: 50%;">
+                                    <div style="flex-grow: 1;">
+                                        <p style="margin: 0; font-weight: 600; color: #212529;">Emma Johnson</p>
+                                        <p style="margin: 0; color: #6c757d; font-size: 0.9rem;">You have a new message waiting.</p>
+                                    </div>
+                                    <button class="toastCloseButton" style="background: none; border: none; font-size: 24px; color: #adb5bd; cursor: pointer; line-height: 1; padding: 0;">&times;</button>
+                                </div>
+                                `,
       duration: 5000,
       entryAnimation: "slideInRight",
     });
   });
 
+  // --- Remove All Toasts Demo ---
+  const removeAllCreateBtn = document.getElementById("remove-all-create-btn");
+  const removeAllClearBtn = document.getElementById("remove-all-clear-btn");
+  const removeAllCodeEl = document.getElementById("remove-all-code");
+
+  const removeAllCodeString = `/* Example (npm / ES module): */
+// Import removeAllToasts from "not-a-toast"
+import toast, { removeAllToasts } from "not-a-toast";
+import "not-a-toast/style.css";
+
+// Remove all active toasts
+removeAllToasts();
+-----------------------------------
+/* Example (CDN / UMD): */
+<!-- With CDN, you can use removeAllToasts() directly -->
+
+// Remove all active toasts
+removeAllToasts();
+`;
+
+  updateCode(removeAllCodeEl, removeAllCodeString);
+
+  removeAllCreateBtn.addEventListener("click", () => {
+    toast({ message: "First toast!", position: "top-left", theme: "terminal" });
+    toast({
+      message: "Second toast!",
+      position: "top-center",
+      theme: "sonoma",
+    });
+    toast({
+      message: "Third toast!",
+      position: "bottom-right",
+      theme: "pixelRetro",
+    });
+  });
+
+  removeAllClearBtn.addEventListener("click", () => {
+    removeAllToasts();
+  });
+
   // --- Copy Button Functionality ---
   document.querySelectorAll(".copy-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
+     toast({
+        message: "Copied to clipboard!",
+        showIcon: true,
+       iconType: "success",
+        iconAnimation:"jelly",
+       theme: toastTheme,
+       entryAnimation: "jellyPopIn",
+        exitAnimation:"jellyPopOut"
+      });
       const codeContainer = btn.parentElement;
       const codeElement = codeContainer.querySelector("code");
       if (codeElement) {
